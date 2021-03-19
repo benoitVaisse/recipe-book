@@ -6,5 +6,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'recipe-book';
+  
+  page:string = "recipes";
+
+  showPage(page:string){
+    this.page = page;
+  }
 }
