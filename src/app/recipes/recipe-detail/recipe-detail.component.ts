@@ -11,7 +11,7 @@ import { Recipe } from '../recipe.model';
 export class RecipeDetailComponent implements OnInit {
 
   recipeDetail:Recipe= new Recipe("","","",[]);
-  constructor(private recipeService:RecipeService, private slService:ShoppingListService) {
+  constructor(private recipeService:RecipeService) {
    
    }
 
@@ -22,7 +22,7 @@ export class RecipeDetailComponent implements OnInit {
   }
 
   AddIngredientToShoppingList(){
-      this.slService.addIngredients(this.recipeDetail.ingredients);
+      this.recipeService.AddIngredientToShoppingList(this.recipeDetail.ingredients);
   }
 
 }
