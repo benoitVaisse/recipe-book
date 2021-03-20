@@ -1,34 +1,43 @@
-<div class="row">
-    <div class="col-xs-12">
-        <img [src]="recipeDetail.imagePath" alt="" class="img-responsive" style="max-height: 50px;">
+<div *ngIf="recipeDetail.name !=='' else infoText">
+
+    <div class="row">
+        <div class="col-xs-12">
+            <img [src]="recipeDetail.imagePath" alt="" class="img-responsive" style="max-height: 50px;">
+        </div>
     </div>
-</div>
-<div class="row">
-    <div class="col-xs-12">
-        <h1> {{recipeDetail.name}} </h1>
+    <div class="row">
+        <div class="col-xs-12">
+            <h1> {{recipeDetail.name}} </h1>
+        </div>
     </div>
-</div>
-<div class="row">
-    <div class="col-xs-12">
-        <div appDropdown class="btn-group">
-            <button type="button" class="btn btn-primary dropdown-toggle"> Manage recipe <span class="caret"></span></button>
-            <ul class="dropdown-menu">
-                <li><a href="#"> Add ingredient to shopping list</a></li>
-                <li><a href="#"> Edit recipe</a></li>
-                <li><a href="#"> Delete recipe</a></li>
+    <div class="row">
+        <div class="col-xs-12">
+            <div appDropdown class="btn-group">
+                <button type="button" class="btn btn-primary dropdown-toggle"> Manage recipe <span class="caret"></span></button>
+                <ul class="dropdown-menu">
+                    <li><a href="#" (click)="AddIngredientToShoppingList()"> Add ingredient to shopping list</a></li>
+                    <li><a href="#"> Edit recipe</a></li>
+                    <li><a href="#"> Delete recipe</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    
+    <div class="row">
+        <div class="col-xs-12">
+            {{recipeDetail.description}}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <ul class="list-group">
+                <li class="list-group-item" *ngFor="let i of recipeDetail.ingredients"> {{ i.name }} ( {{i.amount}} )</li>
             </ul>
         </div>
     </div>
 </div>
 
-
-<div class="row">
-    <div class="col-xs-12">
-        {{recipeDetail.description}}
-    </div>
-</div>
-<div class="row">
-    <div class="col-xs-12">
-        INgredients
-    </div>
-</div>
+<ng-template #infoText>
+    selectionner une recette
+</ng-template>

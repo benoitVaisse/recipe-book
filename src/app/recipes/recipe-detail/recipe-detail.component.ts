@@ -1,4 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { RecipeService } from 'src/app/services/recipe.service';
+import { ShoppingListService } from 'src/app/services/shopping-list.service';
 import { Recipe } from '../recipe.model';
 
 @Component({
@@ -8,10 +10,19 @@ import { Recipe } from '../recipe.model';
 })
 export class RecipeDetailComponent implements OnInit {
 
-  @Input() recipeDetail:Recipe= new Recipe("","","");
-  constructor() { }
+  recipeDetail:Recipe= new Recipe("","","",[]);
+  constructor(private recipeService:RecipeService, private slService:ShoppingListService) {
+   
+   }
 
   ngOnInit(): void {
+    this.recipeService.recipeSelected.subscribe((recipe:Recipe)=>{
+      this.recipeDetail = recipe
+    })
+  }
+
+  AddIngredientToShoppingList(){
+      this.slService.addIngredients(this.recipeDetail.ingredients);
   }
 
 }
