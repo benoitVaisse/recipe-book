@@ -15,9 +15,9 @@
             <div appDropdown class="btn-group">
                 <button type="button" class="btn btn-primary dropdown-toggle"> Manage recipe <span class="caret"></span></button>
                 <ul class="dropdown-menu">
-                    <li><a href="#" (click)="AddIngredientToShoppingList()"> Add ingredient to shopping list</a></li>
-                    <li><a href="#"> Edit recipe</a></li>
-                    <li><a href="#"> Delete recipe</a></li>
+                    <li><a (click)="AddIngredientToShoppingList()"> Add ingredient to shopping list</a></li>
+                    <li><a (click)="editRecipe()"> Edit recipe</a></li>
+                    <li><a> Delete recipe</a></li>
                 </ul>
             </div>
         </div>
@@ -39,5 +39,5 @@
 </div>
 
 <ng-template #infoText>
-    selectionner une recette
+    Veuillez selectionner une recette !!
 </ng-template>

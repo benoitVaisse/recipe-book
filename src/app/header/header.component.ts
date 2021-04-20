@@ -1,4 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from "@angular/core";
+import { Router } from "@angular/router";
+import { RoutingConstante } from "../constante/Route.constante";
 
 @Component({
     selector: "app-header",
@@ -8,14 +10,21 @@ import { Component, EventEmitter, OnInit, Output } from "@angular/core";
 
 export class HeaderComponent implements OnInit{
 
-    @Output() pageEvent = new EventEmitter<string>();
-
     ngOnInit(){
 
     }
-    constructor(){
+    constructor(private router:Router){
     }
-    getPage(page:string){
-        this.pageEvent.emit(page);
+
+    getPageRecipe(){
+        this.router.navigate([RoutingConstante.route_recipe]);
     }
+    getPageShoppingList(){
+        this.router.navigate([RoutingConstante.route_shopping_list]);
+    }
+
+    getPageHome(){
+        this.router.navigate([RoutingConstante.route_home])
+    }
+    
 }

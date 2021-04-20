@@ -1,4 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { RoutingConstante } from 'src/app/constante/Route.constante';
 import { RecipeService } from 'src/app/services/recipe.service';
 import { Recipe } from '../../recipe.model';
 
@@ -9,14 +11,17 @@ import { Recipe } from '../../recipe.model';
 })
 export class RecipeItemComponent implements OnInit {
 
-  @Input()recipe:Recipe = new Recipe("", "", "",[]);
-  constructor(private recipeService:RecipeService) { }
+  @Input()recipe:Recipe = new Recipe(0, "", "", "",[]);
+  constructor(private router:Router, private route:ActivatedRoute) { }
 
   ngOnInit(): void {
   }
 
-  onSelected(){
-    this.recipeService.recipeSelected.emit(this.recipe);
+  onSelected(id:number){
+    this.router.navigate([RoutingConstante.route_recipe_one.replace(":id", id.toString())])
   }
 
+  isActive(id:number){
+    return (this.router.url).indexOf("/"+RoutingConstante.route_recipe_one.replace(":id", id.toString()))> -1 ? "active":"";
+  }
 }

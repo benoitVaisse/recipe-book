@@ -1,4 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { ActivatedRoute, Params, Router } from '@angular/router';
+import { RoutingConstante } from 'src/app/constante/Route.constante';
 import { RecipeService } from 'src/app/services/recipe.service';
 import { ShoppingListService } from 'src/app/services/shopping-list.service';
 import { Recipe } from '../recipe.model';
@@ -10,19 +12,25 @@ import { Recipe } from '../recipe.model';
 })
 export class RecipeDetailComponent implements OnInit {
 
-  recipeDetail:Recipe= new Recipe("","","",[]);
-  constructor(private recipeService:RecipeService) {
+  private id : number = 0;
+  recipeDetail:Recipe|any= new Recipe(0,"","","",[]);
+  constructor(private recipeService:RecipeService, private activeRoute:ActivatedRoute, private router:Router) {
    
    }
 
   ngOnInit(): void {
-    this.recipeService.recipeSelected.subscribe((recipe:Recipe)=>{
-      this.recipeDetail = recipe
+    this.activeRoute.params.subscribe((params:Params)=>{
+      this.id = +params["id"];
+      this.recipeDetail = this.recipeService.getRecipe(this.id);
     })
   }
 
   AddIngredientToShoppingList(){
       this.recipeService.AddIngredientToShoppingList(this.recipeDetail.ingredients);
+  }
+
+  editRecipe(){
+    this.router.navigate([RoutingConstante.route_recipe_edit.replace(":id", this.id.toString())])
   }
 
 }
