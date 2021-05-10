@@ -40,6 +40,7 @@ export class ShoppingEditComponent implements OnInit, OnDestroy {
         }else{
           this.shoppingListService.updateIngredient(this.indexIngredient, ingredient)
         }
+        this.resetForm();
       }
   }
 
@@ -66,5 +67,18 @@ export class ShoppingEditComponent implements OnInit, OnDestroy {
         Validators.min(1),
       ])
     })
+  }
+
+  onClear(){
+    this.resetForm();
+  }
+  private resetForm(){
+    this.ingredientForm.reset();
+    this.editMode = false;
+  }
+
+  onDelete(){
+    this.shoppingListService.deleteIngredient(this.indexIngredient);
+    this.resetForm();
   }
 }
