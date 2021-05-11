@@ -62,4 +62,13 @@ export class RecipeService {
         this.recipesList.next(this.recipes.slice());
     }
 
+    public async deleteRecipe(recipe:Recipe){
+        this.recipes.find((e, index)=>{
+            if(e.id == recipe.id){
+                this.recipes.splice(index, 1);
+            }
+        })
+        this.recipesList.next(this.recipes.slice());
+    }
+
 }

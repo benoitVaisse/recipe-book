@@ -13,13 +13,13 @@ import { Recipe } from '../recipe.model';
 export class RecipeListComponent implements OnInit, OnDestroy {
 
   recipes:Recipe[] = [];
-  listRecipeChanged:Subscription = new Subscription();
+  listRecipeChangedSubscription:Subscription = new Subscription();
 
   constructor(private recipeService:RecipeService, private router:Router) { }
 
   ngOnInit(): void {
     this.recipes = this.recipeService.getRecipes();
-    this.listRecipeChanged = this.recipeService.recipesList.subscribe((recipes:Recipe[])=> {
+    this.listRecipeChangedSubscription = this.recipeService.recipesList.subscribe((recipes:Recipe[])=> {
       this.recipes = recipes
     })
   }
@@ -29,7 +29,7 @@ export class RecipeListComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(){
-    this.listRecipeChanged.unsubscribe();
+    this.listRecipeChangedSubscription.unsubscribe();
   }
 
 }

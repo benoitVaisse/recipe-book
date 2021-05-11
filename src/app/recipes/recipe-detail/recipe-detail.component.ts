@@ -33,4 +33,9 @@ export class RecipeDetailComponent implements OnInit {
     this.router.navigate([RoutingConstante.route_recipe_edit.replace(":id", this.id.toString())])
   }
 
+  async onDeleteRecipe(){
+    await this.recipeService.deleteRecipe(this.recipeDetail);
+    this.router.navigate([RoutingConstante.route_recipe]);
+  }
+
 }
