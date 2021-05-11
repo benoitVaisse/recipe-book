@@ -30,7 +30,11 @@ export class RecipeService {
 
     constructor(private slService:ShoppingListService){}
 
-    public getRecipes(){
+    /**
+     * get all recipes
+     * @returns 
+     */
+    public getRecipes():Recipe[]{
         return this.recipes.slice();
     }
 
@@ -38,6 +42,11 @@ export class RecipeService {
         this.slService.addIngredients(ingrediens);
     }
 
+    /**
+     * get recipe by id
+     * @param id 
+     * @returns 
+     */
     public getRecipe(id:number):Recipe|any{
         let recipe:Recipe|any = this.recipes.find((e)=>{
             return e.id == id;
@@ -48,11 +57,20 @@ export class RecipeService {
         return new Recipe(0,"","","",[]);
     }
 
+    /**
+     * add recipe
+     * @param recipe 
+     */
     public addRecipe(recipe:Recipe){
         this.recipes.push(recipe);
         this.recipesList.next(this.recipes.slice());
         
     }
+
+    /**
+     * update recipe
+     * @param recipe
+     */
     public updateRecipe(recipe:Recipe){
         this.recipes.find((e, index)=>{
             if(e.id == recipe.id){
@@ -62,6 +80,10 @@ export class RecipeService {
         this.recipesList.next(this.recipes.slice());
     }
 
+    /**
+     * delete recipe
+     * @param recipe 
+     */
     public async deleteRecipe(recipe:Recipe){
         this.recipes.find((e, index)=>{
             if(e.id == recipe.id){
