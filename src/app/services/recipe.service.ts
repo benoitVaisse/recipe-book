@@ -7,6 +7,7 @@ import { ShoppingListService } from "./shopping-list.service";
 export class RecipeService {
 
     recipeSelected = new Subject<Recipe>();
+    recipesList = new Subject<Recipe[]>();
 
 
     private recipes:Recipe[]= [
@@ -45,6 +46,20 @@ export class RecipeService {
             return recipe;
         }
         return new Recipe(0,"","","",[]);
+    }
+
+    public addRecipe(recipe:Recipe){
+        this.recipes.push(recipe);
+        this.recipesList.next(this.recipes.slice());
+        
+    }
+    public updateRecipe(recipe:Recipe){
+        this.recipes.find((e, index)=>{
+            if(e.id == recipe.id){
+                this.recipes[index] = recipe;
+            }
+        })
+        this.recipesList.next(this.recipes.slice());
     }
 
 }
