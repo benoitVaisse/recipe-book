@@ -38,6 +38,11 @@ export class RecipeService {
         return this.recipes.slice();
     }
 
+    public setRecipes(recipes:Recipe[]){
+        this.recipes = recipes;
+        this.recipesList.next(this.recipes.slice());
+    }
+
     public AddIngredientToShoppingList(ingrediens:Ingredient[]){
         this.slService.addIngredients(ingrediens);
     }
@@ -84,12 +89,14 @@ export class RecipeService {
      * delete recipe
      * @param recipe 
      */
-    public async deleteRecipe(recipe:Recipe){
-        this.recipes.find((e, index)=>{
+    public  deleteRecipe(recipe:Recipe){
+        let indexRecipe:number = 0;
+        this.recipes.find((e:Recipe, index)=>{
             if(e.id == recipe.id){
-                this.recipes.splice(index, 1);
+               indexRecipe = index;
             }
-        })
+        });
+        this.recipes.splice(indexRecipe,1)
         this.recipesList.next(this.recipes.slice());
     }
 

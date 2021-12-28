@@ -1,6 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from "@angular/core";
 import { Router } from "@angular/router";
 import { RoutingConstante } from "../constante/Route.constante";
+import { DataStorageServie } from "../shared/data-storage.service";
 
 @Component({
     selector: "app-header",
@@ -10,21 +11,20 @@ import { RoutingConstante } from "../constante/Route.constante";
 
 export class HeaderComponent implements OnInit{
 
-    ngOnInit(){
+    constructor(private router:Router,private dsService:DataStorageServie){}
 
-    }
-    constructor(private router:Router){
-    }
-
-    getPageRecipe(){
-        this.router.navigate([RoutingConstante.route_recipe]);
-    }
-    getPageShoppingList(){
-        this.router.navigate([RoutingConstante.route_shopping_list]);
-    }
+    ngOnInit(){}
 
     getPageHome(){
         this.router.navigate([RoutingConstante.route_home])
+    }
+
+    onSaveData(){
+        this.dsService.storeDataRecipe();
+    }
+
+    onFetchData(){
+        this.dsService.fetDataRecipe();
     }
     
 }
