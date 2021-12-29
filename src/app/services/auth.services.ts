@@ -23,7 +23,7 @@ export class AuthService{
 
     public signIn(data:{email:string,password:string}):Observable<AuthRespponse>{
 
-        return this.http.post<AuthRespponse>("https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyCceIRhJO-rwwvvl8mP9DnWShegmxrnA8A",
+        return this.http.post<AuthRespponse>("https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=key",
         {...data,returnSecureToken:true})
         .pipe(
             catchError(errorRes => {
@@ -40,7 +40,7 @@ export class AuthService{
 
 
     public login(data:{email:string,password:string,returnSecureToken:boolean}):Observable<AuthRespponse>{
-        return this.http.post<AuthRespponse>("https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyCceIRhJO-rwwvvl8mP9DnWShegmxrnA8A",
+        return this.http.post<AuthRespponse>("https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=key",
         data)
         .pipe(
             catchError(errorRes=>{
