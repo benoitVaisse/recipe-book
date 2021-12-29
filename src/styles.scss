@@ -2,3 +2,7 @@
 input.ng-touched.ng-invalid, textarea.ng-touched.ng-invalid{
     border: 1px solid red;
 }
+
+.error-input{
+    color:rgb(134, 4, 4)
+}

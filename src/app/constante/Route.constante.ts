@@ -8,4 +8,6 @@ export class RoutingConstante {
     public static route_recipe_edit = "recipes/:id/edit";
     public static route_recipe_edit_children = ":id/edit";
     public static route_shopping_list = "shopping-list";
+    public static route_auth = "auth"
+    public static route_login = "login"
 }

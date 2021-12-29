@@ -1,5 +1,6 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
+import { AuthComponent } from "./auth/auth.component";
 import { RoutingConstante } from "./constante/Route.constante";
 import { RecipeDetailComponent } from "./recipes/recipe-detail/recipe-detail.component";
 import { RecipeEditComponent } from "./recipes/recipe-edit/recipe-edit.component";
@@ -16,6 +17,7 @@ const appRouter:Routes = [
         {path:RoutingConstante.route_recipe_edit_children, component: RecipeEditComponent},
     ]},
     { path:RoutingConstante.route_shopping_list, component:ShoppingListComponent},
+    { path:RoutingConstante.route_auth, component:AuthComponent}
   ]
 @NgModule({
     imports: [RouterModule.forRoot(appRouter)],
